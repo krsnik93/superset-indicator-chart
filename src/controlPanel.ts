@@ -1,4 +1,4 @@
-import { t } from '@superset-ui/translation';
+import { t } from '@superset-ui/core';
 import { expandControlConfig } from '@superset-ui/chart-controls';
 
 export default {

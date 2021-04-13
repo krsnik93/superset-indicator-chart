@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import styled from '@superset-ui/style';
+import { styled } from '@superset-ui/core';
 
 type VisProps = {
   className?: string;
