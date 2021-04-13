@@ -9,12 +9,12 @@ import Chart from './Vis';
 const metadata = new ChartMetadata({
   description:
     'A chart plugin for Superset demonstrating current best practices',
-  name: t('Hello World'),
+  name: t('Status Indicator'),
   thumbnail,
   useLegacyApi: false,
 });
 
-export default class HelloWorldChartPlugin extends ChartPlugin {
+export default class StatusIndicatorChartPlugin extends ChartPlugin {
   constructor() {
     super({
       buildQuery,

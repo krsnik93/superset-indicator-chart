@@ -1,5 +1,5 @@
 {
-  "name": "superset-chart-hello-world",
+  "name": "plugin-chart-status-indicator",
   "version": "0.0.0",
   "description": "A sample chart plugin for Superset demonstrating current best practices",
   "main": "src/chart.ts",
