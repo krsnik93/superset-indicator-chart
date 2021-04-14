@@ -1,12 +1,6 @@
 import React, { useMemo } from 'react';
 import { styled } from '@superset-ui/core';
 
-type VisProps = {
-  className?: string;
-  width: number;
-  height: number;
-  queryData: any;
-};
 
 const Header = styled.h1`
   font-family: ${({ theme }) => theme.typography.families.sansSerif};
@@ -15,11 +9,11 @@ const Header = styled.h1`
   justify-content: center;
 `;
 
-export default function Vis({ className = '', queryData }: VisProps) {
+export default function Vis({ className = '', transformedProps }) {
   const stringyQueryData = useMemo(() => {
-    return JSON.stringify(queryData, null, 2);
-  }, [queryData]);
-
+    console.log(123, transformedProps);
+    return JSON.stringify(transformedProps, null, 2);
+  }, [transformedProps]);
   return (
     <>
       <Header className={className}>Hello world!</Header>

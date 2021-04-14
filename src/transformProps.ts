@@ -1,29 +1,28 @@
-import { ChartProps } from '@superset-ui/core';
+import {
+  ChartProps,
+  DataRecord,
+  QueryFormMetric,
+  getMetricLabel,
+} from '@superset-ui/core';
 
-export interface DatasourceMetric {
-  label: string;
-  metric_name?: string;
-  d3format?: string;
-}
 
-export type FormData = {
-  fontSize?: string;
-};
-
-export type HelloWorldChartProps = ChartProps & {
-  formData: FormData;
-  queryData: any;
-};
-
-export default function transformProps(chartProps: HelloWorldChartProps) {
-  const { width, height, queryData } = chartProps;
-
+export default function transformProps(chartProps) {
+  const { width, height, formData, queriesData } = chartProps;
+  const { metric } = formData;
+  const data = (queriesData[0]?.data || []) as DataRecord[];
   // transformations happen here...
   // TODO demo some transformation
+  console.log(4, formData);
+  console.log(5, queriesData);
+  const transformedProps = {
+    ...formData,
+    data: data[0],
+    value: data[0][getMetricLabel(metric as QueryFormMetric)],
+  };
 
   return {
     width,
     height,
-    queryData,
+    transformedProps,
   };
 }

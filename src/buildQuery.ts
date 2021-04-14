@@ -1,11 +1,10 @@
-import { buildQueryContext } from '@superset-ui/core';
-// import { WordCloudFormData } from '../types';
+import { buildQueryContext, QueryFormData } from '@superset-ui/core';
 
-export default function buildQuery(formData: any) {
-  // Set the single QueryObject's groupby field with series in formData
+export default function buildQuery(formData: QueryFormData) {
   return buildQueryContext(formData, baseQueryObject => [
     {
       ...baseQueryObject,
+      groupby: formData.groupby || [],
     },
   ]);
 }
