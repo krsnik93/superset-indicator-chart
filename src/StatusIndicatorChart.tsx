@@ -2,13 +2,6 @@ import React, { useMemo } from 'react';
 import { styled } from '@superset-ui/core';
 
 
-const Header = styled.h1`
-  font-family: ${({ theme }) => theme.typography.families.sansSerif};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
 const Chart = styled.div`
   display: flex;
   flex-direction: column;
