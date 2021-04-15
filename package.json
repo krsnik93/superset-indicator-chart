@@ -25,7 +25,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@superset-ui/chart-controls": "0.17.30",
-    "@superset-ui/core": "0.17.30"
+    "@superset-ui/core": "0.17.30",
+    "@superset-ui/legacy-preset-chart-deckgl": "^0.4.6"
   },
   "peerDependencies": {
     "react": "^16.13.1"

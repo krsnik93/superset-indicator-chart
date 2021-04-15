@@ -3,7 +3,7 @@ import controlPanel from './controlPanel';
 import transformProps from './transformProps';
 import buildQuery from './buildQuery';
 import thumbnail from './images/thumbnail.png';
-import Chart from './Vis';
+import Chart from './StatusIndicatorChart';
 
 const metadata = new ChartMetadata({
   description:
