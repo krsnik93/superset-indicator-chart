@@ -3,6 +3,7 @@ import {
   DataRecord,
   QueryFormMetric,
   getMetricLabel,
+  getNumberFormatter,
 } from '@superset-ui/core';
 import sandboxedEval from '@superset-ui/legacy-preset-chart-deckgl/lib/utils/sandbox';
 
@@ -20,11 +21,14 @@ export default function transformProps(chartProps) {
     textColor,
     subtitle,
     kicker,
+    fontSize,
+    numberFormat,
     roundedCorners,
    } = formData;
+  const numberFormatter = getNumberFormatter(numberFormat);
   const data = (queriesData[0]?.data || []) as DataRecord[];
-  const value = data[0][getMetricLabel(metric as QueryFormMetric)]
-
+  const value = data[0][getMetricLabel(metric as QueryFormMetric)];
+  
   console.log(4, formData);
   console.log(5, queriesData);
 
@@ -39,13 +43,16 @@ export default function transformProps(chartProps) {
     backgroundColor = 'white';
   }
 
+  const formattedValue = numberFormatter(value);
+
   const transformedProps = {
     data,
-    value,
+    value: formattedValue,
     backgroundColor,
     textColor,
     subtitle,
     kicker,
+    fontSize,
     roundedCorners,
   };
 

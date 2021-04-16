@@ -10,18 +10,18 @@ const Chart = styled.div`
 `;
 
 const Kicker = styled.h4`
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
 `;
 
 const Value = styled.h1`
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-top: 0.15em;
+    margin-bottom: 0.15em;
 `;
 
 const Subtitle = styled.h4`
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
 `;
 
 export default function StatusIndicatorChart(chartProps) {
@@ -31,6 +31,7 @@ export default function StatusIndicatorChart(chartProps) {
     textColor,
     subtitle,
     kicker,
+    fontSize,
     roundedCorners,
     height,
     width,
@@ -44,9 +45,21 @@ export default function StatusIndicatorChart(chartProps) {
       'height': height,
       'width': width,
     }}>
-        <Kicker>{kicker}</Kicker>
-        <Value>{value}</Value>
-        <Subtitle>{subtitle}</Subtitle>
+        <Kicker style={{
+	  'fontSize': fontSize,
+	}}>
+          {kicker}
+        </Kicker>
+        <Value style={{
+	  'fontSize': fontSize * 2,
+	}}>
+          {value}
+        </Value>
+        <Subtitle style={{
+	  'fontSize': fontSize,
+	}}>
+          {subtitle}
+        </Subtitle>
     </Chart>
   );
 }

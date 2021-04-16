@@ -1,6 +1,6 @@
 import React from 'react';
 import { t, validateNonEmpty, validateInteger } from '@superset-ui/core';
-import { formatSelectOptions } from '@superset-ui/chart-controls';
+import { formatSelectOptions, D3_FORMAT_OPTIONS } from '@superset-ui/chart-controls';
 import { jsDataMutator } from '@superset-ui/legacy-preset-chart-deckgl/lib/utilities/Shared_DeckGL';
 
 
@@ -46,6 +46,20 @@ export default {
         ],
         [
           {
+            name: 'font_size',
+            config: {
+              type: 'SliderControl',
+              label: t('Font size'),
+              description: t('Font size for text elements'),
+              renderTrigger: true,
+              min: 18,
+              max: 30,
+              default: 20,
+            },
+          },
+        ],
+        [
+          {
 	    name: 'text_color',
             config: {
 	      type: 'SelectControl',
@@ -54,6 +68,20 @@ export default {
               default: 'dark',
               renderTrigger: true,
 	  },
+        ],
+        [
+          {
+            name: 'number_format',
+            config: {
+              type: 'SelectControl',
+              label: t('Number format'),
+              description: 'D3 format syntax: https://github.com/d3/d3-format',
+              freeForm: true,
+              renderTrigger: true,
+              default: 'SMART_NUMBER',
+              choices: D3_FORMAT_OPTIONS,
+            },
+          },
         ],
         [
           {
