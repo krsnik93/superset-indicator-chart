@@ -17,7 +17,7 @@ export default function transformProps(chartProps) {
   } = chartProps;
   const {
     metric,
-    jsDataMutator,
+    dataColorMapper,
     textColor,
     subtitle,
     kicker,
@@ -28,14 +28,14 @@ export default function transformProps(chartProps) {
   const numberFormatter = getNumberFormatter(numberFormat);
   const data = (queriesData[0]?.data || []) as DataRecord[];
   const value = data[0][getMetricLabel(metric as QueryFormMetric)];
-  
+
   console.log(4, formData);
   console.log(5, queriesData);
 
   let backgroundColor;
-  if (jsDataMutator) {
+  if (dataColorMapper) {
     console.log('Setting background color with the passed function.');
-    const jsFnMutator = sandboxedEval(jsDataMutator);
+    const jsFnMutator = sandboxedEval(dataColorMapper);
     backgroundColor = jsFnMutator(value);
   }
   else {

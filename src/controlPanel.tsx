@@ -1,8 +1,7 @@
 import React from 'react';
 import { t, validateNonEmpty, validateInteger } from '@superset-ui/core';
 import { formatSelectOptions, D3_FORMAT_OPTIONS } from '@superset-ui/chart-controls';
-import { jsDataMutator } from '@superset-ui/legacy-preset-chart-deckgl/lib/utilities/Shared_DeckGL';
-
+import { jsFunctionControl } from './utils';
 
 export default {
   controlPanelSections: [
@@ -14,7 +13,18 @@ export default {
         ['groupby'],
         ['metric'],
         ['adhoc_filters'],
-        [jsDataMutator],
+        [
+	  {
+  	    name: 'data_color_mapper',
+            config: jsFunctionControl(
+              t('Data color mapper'),
+              t(
+                'Define a javascript function that receives the data array used in the visualization ' +
+                'and is expected to return a hex color code which will be used as the background color. '
+              ),
+            ),
+          }
+	],
       ],
     },
     {
