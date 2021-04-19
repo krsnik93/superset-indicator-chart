@@ -5,7 +5,12 @@ import { jsFunctionControl } from './utils';
 
 const defaultDataColorMapper = `
 function dataColorMapper(data) {
-  return '#0BDA51';
+  if (data['count'] < 10){
+    return '#ED1C24';
+  }
+  else {
+    return '#0BDA51';
+  }
 }
 `;
 

@@ -7,7 +7,7 @@ import {
 } from '@superset-ui/core';
 import sandboxedEval from '@superset-ui/legacy-preset-chart-deckgl/lib/utils/sandbox';
 
-function insertMetricsIntoMarkdown(markdownStr, dataPoint, numberFormat) {
+function insertMetricsIntoMarkdown(markdownStr, dataPoint, numberFormat, ignore = []) {
   const numberFormatter = getNumberFormatter(numberFormat);
   let markdown = markdownStr.slice(0);
   const regexp = /({{(.*?)}})/g;
@@ -17,7 +17,7 @@ function insertMetricsIntoMarkdown(markdownStr, dataPoint, numberFormat) {
       const metricLabel = match[2];
       let metric = dataPoint[metricLabel];
       if (metric) {
-        if (typeof metric === 'number') {
+        if (typeof metric === 'number' && !ignore.includes(metricLabel)) {
 	  metric = numberFormatter(metric);
         }
         markdown = markdown.replace(match[1], metric);
@@ -49,6 +49,7 @@ export default function transformProps(chartProps) {
     queriesData
   } = chartProps;
   const {
+    groupby,
     metrics,
     dataColorMapper,
     textColor,
@@ -61,7 +62,7 @@ export default function transformProps(chartProps) {
    } = formData;
   const data = (queriesData[0]?.data || []) as DataRecord[];
   const backgroundColors = data.map(dataPoint => getBackgroundColor(dataColorMapper, dataPoint));
-  const markdowns = data.map(dataPoint => insertMetricsIntoMarkdown(markdown, dataPoint, numberFormat));
+  const markdowns = data.map(dataPoint => insertMetricsIntoMarkdown(markdown, dataPoint, numberFormat, groupby);
 
   const transformedProps = {
     markdowns,
