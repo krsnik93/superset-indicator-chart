@@ -32,6 +32,17 @@ export default {
         ['metrics'],
         ['adhoc_filters'],
         [
+          {
+            name: 'order_desc',
+            config: {
+              type: 'CheckboxControl',
+              label: t('Sort descending'),
+              default: true,
+              description: t('Whether to sort descending or ascending'),
+            },
+          },
+        ],
+        [
 	  {
   	    name: 'data_color_mapper',
             config: jsFunctionControl(
@@ -61,6 +72,7 @@ export default {
               default: defaultMarkdown,
 	      language: 'markdown',
 	      offerEditInModal: true,
+              renderTrigger: true,
             },
           },
         ],

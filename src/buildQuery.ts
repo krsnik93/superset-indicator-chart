@@ -4,7 +4,7 @@ export default function buildQuery(formData: QueryFormData) {
   return buildQueryContext(formData, baseQueryObject => [
     {
       ...baseQueryObject,
-      groupby: formData.groupby || [],
+      orderby: formData.metrics.map(metric => [metric, formData.order_desc]),
     },
   ]);
 }
