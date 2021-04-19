@@ -7,6 +7,39 @@ import {
 } from '@superset-ui/core';
 import sandboxedEval from '@superset-ui/legacy-preset-chart-deckgl/lib/utils/sandbox';
 
+function insertMetricsIntoMarkdown(markdownStr, dataPoint, numberFormat) {
+  const numberFormatter = getNumberFormatter(numberFormat);
+  let markdown = markdownStr.slice(0);
+  const regexp = /({{(.*?)}})/g;
+  const matches = markdown.matchAll(regexp);
+
+  for (const match of matches) {
+      const metricLabel = match[2];
+      let metric = dataPoint[metricLabel];
+      if (metric) {
+        if (typeof metric === 'number') {
+	  metric = numberFormatter(metric);
+        }
+        markdown = markdown.replace(match[1], metric);
+      }
+  }
+  return markdown;
+}
+
+function getBackgroundColor(dataColorMapper, data) {
+  let backgroundColor;
+  if (dataColorMapper) {
+    console.log('Setting background color with the passed function.');
+    const jsFnMutator = sandboxedEval(dataColorMapper);
+    backgroundColor = jsFnMutator(data);
+  }
+  else {
+    console.log('Setting default background color as no setter function was passed.');
+    backgroundColor = 'white';
+  }
+  return backgroundColor;
+}
+
 
 export default function transformProps(chartProps) {
   const {
@@ -16,45 +49,31 @@ export default function transformProps(chartProps) {
     queriesData
   } = chartProps;
   const {
-    metric,
+    metrics,
     dataColorMapper,
     textColor,
     subtitle,
     kicker,
-    fontSize,
+    markdown,
+    orientation,
     numberFormat,
     roundedCorners,
    } = formData;
-  const numberFormatter = getNumberFormatter(numberFormat);
   const data = (queriesData[0]?.data || []) as DataRecord[];
-  const value = data[0][getMetricLabel(metric as QueryFormMetric)];
+  const backgroundColors = data.map(dataPoint => getBackgroundColor(dataColorMapper, dataPoint));
+  const markdowns = data.map(dataPoint => insertMetricsIntoMarkdown(markdown, dataPoint, numberFormat));
+
+  const transformedProps = {
+    markdowns,
+    backgroundColors,
+    textColor,
+    orientation,
+    roundedCorners,
+  };
 
   console.log(4, formData);
   console.log(5, queriesData);
-
-  let backgroundColor;
-  if (dataColorMapper) {
-    console.log('Setting background color with the passed function.');
-    const jsFnMutator = sandboxedEval(dataColorMapper);
-    backgroundColor = jsFnMutator(value);
-  }
-  else {
-    console.log('Setting default background color as no setter function was passed.');
-    backgroundColor = 'white';
-  }
-
-  const formattedValue = numberFormatter(value);
-
-  const transformedProps = {
-    data,
-    value: formattedValue,
-    backgroundColor,
-    textColor,
-    subtitle,
-    kicker,
-    fontSize,
-    roundedCorners,
-  };
+  console.log(6, transformedProps);
 
   return {
     width,

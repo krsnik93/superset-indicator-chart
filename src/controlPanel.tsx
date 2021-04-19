@@ -3,6 +3,19 @@ import { t, validateNonEmpty, validateInteger } from '@superset-ui/core';
 import { formatSelectOptions, D3_FORMAT_OPTIONS } from '@superset-ui/chart-controls';
 import { jsFunctionControl } from './utils';
 
+const defaultDataColorMapper = `
+function dataColorMapper(data) {
+  return '#0BDA51';
+}
+`;
+
+const defaultMarkdown = `
+Count
+=====
+
+{{count}}
+`;
+
 export default {
   controlPanelSections: [
     {
@@ -11,7 +24,7 @@ export default {
       tabOverride: 'data',
       controlSetRows: [
         ['groupby'],
-        ['metric'],
+        ['metrics'],
         ['adhoc_filters'],
         [
 	  {
@@ -22,6 +35,9 @@ export default {
                 'Define a javascript function that receives the data array used in the visualization ' +
                 'and is expected to return a hex color code which will be used as the background color. '
               ),
+              null,
+ 	      100,
+              defaultDataColorMapper,
             ),
           }
 	],
@@ -33,38 +49,13 @@ export default {
       controlSetRows: [
         [
           {
-            name: 'kicker',
+            name: 'markdown',
             config: {
-              type: 'TextControl',
-              label: t('Kicker'),
-              description: t('Text above the value'),
-              renderTrigger: true,
-              default: '',
-            },
-          },
-        ],
-        [
-          {
-            name: 'subtitle',
-            config: {
-              type: 'TextControl',
-              label: t('Subtitle'),
-              description: t('Text below the value'),
-              renderTrigger: true,
-              default: '',
-          },
-        ],
-        [
-          {
-            name: 'font_size',
-            config: {
-              type: 'SliderControl',
-              label: t('Font size'),
-              description: t('Font size for text elements'),
-              renderTrigger: true,
-              min: 18,
-              max: 30,
-              default: 20,
+              type: 'TextAreaControl',
+              label: t('Markdown'),
+              default: defaultMarkdown,
+	      language: 'markdown',
+	      offerEditInModal: true,
             },
           },
         ],
@@ -91,6 +82,18 @@ export default {
               default: 'SMART_NUMBER',
               choices: D3_FORMAT_OPTIONS,
             },
+          },
+        ],
+        [
+          {
+            name: 'orientation',
+            config: {
+              type: 'SelectControl',
+              label: t('Orientation'),
+              description: ('How to align multiple indicators'),
+              choices: formatSelectOptions(['horizontal', 'vertical']),
+              default: 'horizontal',
+              renderTrigger: true,
           },
         ],
         [

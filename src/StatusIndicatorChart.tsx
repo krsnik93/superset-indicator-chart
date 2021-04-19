@@ -1,66 +1,49 @@
 import React, { useMemo } from 'react';
-import { styled } from '@superset-ui/core';
+import { styled, SafeMarkdown } from '@superset-ui/core';
 
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const Chart = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-const Kicker = styled.h4`
-    margin-top: 0.1em;
-    margin-bottom: 0.1em;
-`;
-
-const Value = styled.h1`
-    margin-top: 0.15em;
-    margin-bottom: 0.15em;
-`;
-
-const Subtitle = styled.h4`
-    margin-top: 0.1em;
-    margin-bottom: 0.1em;
-`;
 
 export default function StatusIndicatorChart(chartProps) {
   const {
-    value,
-    backgroundColor,
+    markdowns,
+    backgroundColors,
     textColor,
-    subtitle,
-    kicker,
-    fontSize,
+    orientation,
     roundedCorners,
     height,
     width,
   } = chartProps;
 
   return (
-    <Chart style={{
-      'backgroundColor': backgroundColor,
-      'borderRadius': roundedCorners ? '0.5em' : 0,
-      'color': textColor === 'light' ? 'gainsboro' : '#404040',
+    <Container style={{
       'height': height,
       'width': width,
+      'flexDirection': orientation === 'horizontal' ? 'row' : 'column',
     }}>
-        <Kicker style={{
-	  'fontSize': fontSize,
-	}}>
-          {kicker}
-        </Kicker>
-        <Value style={{
-	  'fontSize': fontSize * 2,
-	}}>
-          {value}
-        </Value>
-        <Subtitle style={{
-	  'fontSize': fontSize,
-	}}>
-          {subtitle}
-        </Subtitle>
-    </Chart>
+      {markdowns.map((markdown, index) => (
+        <Chart style={{
+          'backgroundColor': backgroundColors[index],
+          'borderRadius': roundedCorners ? '0.5em' : 0,
+          'color': textColor === 'light' ? 'gainsboro' : '#404040',
+          'marginBottom': orientation === 'horizontal' ?  0 : 10,
+          'marginRight': orientation === 'horizontal' ? 10 : 0,
+        }}>
+          <SafeMarkdown source={markdown} />
+        </Chart>
+      ))}
+    </Container>
   );
 }
 
