@@ -26,9 +26,6 @@ if (isDevMode) {
 }
 
 const config = {
-  node: {
-    fs: 'empty',
-  },
   entry: {
     main: 'src/entry.ts',
   },
@@ -43,6 +40,9 @@ const config = {
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     symlinks: false,
+    fallback: {
+      fs: false
+    }
   },
   module: {
     rules: [
