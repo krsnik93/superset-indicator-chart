@@ -47,5 +47,13 @@
   },
   "peerDependencies": {
     "react-dom": "^16.13.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+      "**/*": "prettier --write --ignore-unknown"
   }
 }
