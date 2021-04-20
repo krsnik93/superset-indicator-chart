@@ -1,5 +1,7 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { styled, SafeMarkdown } from '@superset-ui/core';
+import { ChartProps } from './types';
+
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ const Chart = styled.div`
   justify-content: center;
 `;
 
-export default function StatusIndicatorChart(chartProps) {
+export default function StatusIndicatorChart(chartProps: ChartProps) {
   const {
     markdowns,
     backgroundColors,

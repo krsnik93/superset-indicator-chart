@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { t } from '@superset-ui/core';
+import { SupersetAppState } from './types';
+
 
 export function jsFunctionControl(
-  label,
-  description,
+  label: ReactNode,
+  description: ReactNode,
   extraDescr = null,
   height = 100,
   defaultText = '',
@@ -20,7 +23,7 @@ export function jsFunctionControl(
         {extraDescr}
       </div>
     ),
-    mapStateToProps: state => ({
+    mapStateToProps: (state: SupersetAppState) => ({
       // eslint-disable-next-line no-negated-condition
       warning: !state.common.conf.ENABLE_JAVASCRIPT_CONTROLS
         ? t(

@@ -1,28 +1,11 @@
-import React from 'react';
-import { t, validateNonEmpty, validateInteger } from '@superset-ui/core';
+import { t } from '@superset-ui/core';
 import {
   formatSelectOptions,
   D3_FORMAT_OPTIONS,
 } from '@superset-ui/chart-controls';
+import { DEFAULT_FORM_DATA } from './constants';
 import { jsFunctionControl } from './utils';
 
-const defaultDataColorMapper = `
-function dataColorMapper(data) {
-  if (data['count'] < 10){
-    return '#ED1C24';
-  }
-  else {
-    return '#0BDA51';
-  }
-}
-`;
-
-const defaultMarkdown = `
-Count
-=====
-
-{{count}}
-`;
 
 export default {
   controlPanelSections: [
@@ -40,7 +23,7 @@ export default {
             config: {
               type: 'CheckboxControl',
               label: t('Sort descending'),
-              default: true,
+              default: DEFAULT_FORM_DATA.order_desc,
               description: t('Whether to sort descending or ascending'),
             },
           },
@@ -56,7 +39,7 @@ export default {
               ),
               null,
               100,
-              defaultDataColorMapper,
+              DEFAULT_FORM_DATA.data_color_mapper,
             ),
           },
         ],
@@ -72,7 +55,7 @@ export default {
             config: {
               type: 'TextAreaControl',
               label: t('Markdown'),
-              default: defaultMarkdown,
+              default: DEFAULT_FORM_DATA.markdown,
               language: 'markdown',
               offerEditInModal: true,
               renderTrigger: true,
@@ -86,7 +69,7 @@ export default {
               type: 'SelectControl',
               label: t('Text Color'),
               choices: formatSelectOptions(['light', 'dark']),
-              default: 'dark',
+              default: DEFAULT_FORM_DATA.text_color,
               renderTrigger: true,
             },
           },
@@ -100,7 +83,7 @@ export default {
               description: 'D3 format syntax: https://github.com/d3/d3-format',
               freeForm: true,
               renderTrigger: true,
-              default: 'SMART_NUMBER',
+              default: DEFAULT_FORM_DATA.number_format,
               choices: D3_FORMAT_OPTIONS,
             },
           },
@@ -113,7 +96,7 @@ export default {
               label: t('Orientation'),
               description: 'How to align multiple indicators',
               choices: formatSelectOptions(['horizontal', 'vertical']),
-              default: 'horizontal',
+              default: DEFAULT_FORM_DATA.orientation,
               renderTrigger: true,
             },
           },
@@ -124,7 +107,7 @@ export default {
             config: {
               type: 'CheckboxControl',
               label: t('Rounded Corners'),
-              default: true,
+              default: DEFAULT_FORM_DATA.rounded_corners,
               renderTrigger: true,
             },
           },

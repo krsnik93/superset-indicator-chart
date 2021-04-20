@@ -4,6 +4,7 @@ import transformProps from './transformProps';
 import buildQuery from './buildQuery';
 import thumbnail from './images/thumbnail.png';
 import Chart from './StatusIndicatorChart';
+import { FormData } from './types';
 
 const metadata = new ChartMetadata({
   description:
@@ -13,7 +14,7 @@ const metadata = new ChartMetadata({
   useLegacyApi: false,
 });
 
-export default class StatusIndicatorChartPlugin extends ChartPlugin {
+export default class StatusIndicatorChartPlugin extends ChartPlugin<FormData> {
   constructor() {
     super({
       buildQuery,

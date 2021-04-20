@@ -1,10 +1,13 @@
-import { buildQueryContext, QueryFormData } from '@superset-ui/core';
+import { buildQueryContext } from '@superset-ui/core';
+import { FormData } from './types';
 
-export default function buildQuery(formData: QueryFormData) {
+export default function buildQuery(formData: FormData) {
+  const { metrics, order_desc } = formData;
+
   return buildQueryContext(formData, baseQueryObject => [
     {
       ...baseQueryObject,
-      orderby: formData.metrics.map(metric => [metric, formData.order_desc]),
+      orderby: metrics.map(metric => [metric, order_desc]),
     },
   ]);
 }
