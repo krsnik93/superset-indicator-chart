@@ -1,6 +1,9 @@
 import React from 'react';
 import { t, validateNonEmpty, validateInteger } from '@superset-ui/core';
-import { formatSelectOptions, D3_FORMAT_OPTIONS } from '@superset-ui/chart-controls';
+import {
+  formatSelectOptions,
+  D3_FORMAT_OPTIONS,
+} from '@superset-ui/chart-controls';
 import { jsFunctionControl } from './utils';
 
 const defaultDataColorMapper = `
@@ -43,20 +46,20 @@ export default {
           },
         ],
         [
-	  {
-  	    name: 'data_color_mapper',
+          {
+            name: 'data_color_mapper',
             config: jsFunctionControl(
               t('Data color mapper'),
               t(
                 'Define a javascript function that receives the data array used in the visualization ' +
-                'and is expected to return a hex color code which will be used as the background color. '
+                  'and is expected to return a hex color code which will be used as the background color. ',
               ),
               null,
- 	      100,
+              100,
               defaultDataColorMapper,
             ),
-          }
-	],
+          },
+        ],
       ],
     },
     {
@@ -70,22 +73,23 @@ export default {
               type: 'TextAreaControl',
               label: t('Markdown'),
               default: defaultMarkdown,
-	      language: 'markdown',
-	      offerEditInModal: true,
+              language: 'markdown',
+              offerEditInModal: true,
               renderTrigger: true,
             },
           },
         ],
         [
           {
-	    name: 'text_color',
+            name: 'text_color',
             config: {
-	      type: 'SelectControl',
+              type: 'SelectControl',
               label: t('Text Color'),
               choices: formatSelectOptions(['light', 'dark']),
               default: 'dark',
               renderTrigger: true,
-	  },
+            },
+          },
         ],
         [
           {
@@ -107,10 +111,11 @@ export default {
             config: {
               type: 'SelectControl',
               label: t('Orientation'),
-              description: ('How to align multiple indicators'),
+              description: 'How to align multiple indicators',
               choices: formatSelectOptions(['horizontal', 'vertical']),
               default: 'horizontal',
               renderTrigger: true,
+            },
           },
         ],
         [

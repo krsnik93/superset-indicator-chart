@@ -7,21 +7,26 @@ import {
 } from '@superset-ui/core';
 import sandboxedEval from '@superset-ui/legacy-preset-chart-deckgl/lib/utils/sandbox';
 
-function insertMetricsIntoMarkdown(markdownStr, dataPoint, numberFormat, ignore = []) {
+function insertMetricsIntoMarkdown(
+  markdownStr,
+  dataPoint,
+  numberFormat,
+  ignore = [],
+) {
   const numberFormatter = getNumberFormatter(numberFormat);
   let markdown = markdownStr.slice(0);
   const regexp = /({{(.*?)}})/g;
   const matches = markdown.matchAll(regexp);
 
   for (const match of matches) {
-      const metricLabel = match[2];
-      let metric = dataPoint[metricLabel];
-      if (metric) {
-        if (typeof metric === 'number' && !ignore.includes(metricLabel)) {
-	  metric = numberFormatter(metric);
-        }
-        markdown = markdown.replace(match[1], metric);
+    const metricLabel = match[2];
+    let metric = dataPoint[metricLabel];
+    if (metric) {
+      if (typeof metric === 'number' && !ignore.includes(metricLabel)) {
+        metric = numberFormatter(metric);
       }
+      markdown = markdown.replace(match[1], metric);
+    }
   }
   return markdown;
 }
@@ -32,22 +37,17 @@ function getBackgroundColor(dataColorMapper, data) {
     console.log('Setting background color with the passed function.');
     const jsFnMutator = sandboxedEval(dataColorMapper);
     backgroundColor = jsFnMutator(data);
-  }
-  else {
-    console.log('Setting default background color as no setter function was passed.');
+  } else {
+    console.log(
+      'Setting default background color as no setter function was passed.',
+    );
     backgroundColor = 'white';
   }
   return backgroundColor;
 }
 
-
 export default function transformProps(chartProps) {
-  const {
-    width,
-    height,
-    formData,
-    queriesData
-  } = chartProps;
+  const { width, height, formData, queriesData } = chartProps;
   const {
     groupby,
     metrics,
@@ -59,10 +59,14 @@ export default function transformProps(chartProps) {
     orientation,
     numberFormat,
     roundedCorners,
-   } = formData;
+  } = formData;
   const data = (queriesData[0]?.data || []) as DataRecord[];
-  const backgroundColors = data.map(dataPoint => getBackgroundColor(dataColorMapper, dataPoint));
-  const markdowns = data.map(dataPoint => insertMetricsIntoMarkdown(markdown, dataPoint, numberFormat, groupby);
+  const backgroundColors = data.map(dataPoint =>
+    getBackgroundColor(dataColorMapper, dataPoint),
+  );
+  const markdowns = data.map(dataPoint =>
+    insertMetricsIntoMarkdown(markdown, dataPoint, numberFormat, groupby),
+  );
 
   const transformedProps = {
     markdowns,
