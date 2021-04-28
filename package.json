@@ -1,7 +1,7 @@
 {
-  "name": "plugin-chart-status-indicator",
+  "name": "superset-status-indicator-chart",
   "version": "0.0.0",
-  "description": "A sample chart plugin for Superset demonstrating current best practices",
+  "description": "A status indicator chart plugin for Superset",
   "main": "src/chart.ts",
   "scripts": {
     "test": "jest",
@@ -54,6 +54,6 @@
     }
   },
   "lint-staged": {
-      "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
