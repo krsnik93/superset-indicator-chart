@@ -101,6 +101,9 @@ const config = {
     new CleanWebpackPlugin({
       dry: false,
     }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     new webpack.DefinePlugin({
       'process.env.PACKAGE_NAME': JSON.stringify(packageJson.name),
     }),
