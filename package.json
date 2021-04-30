@@ -1,7 +1,7 @@
 {
-  "name": "superset-status-indicator-chart",
-  "version": "0.0.0",
-  "description": "A status indicator chart plugin for Superset",
+  "name": "superset-indicator-chart",
+  "version": "0.0.3",
+  "description": "Indicator chart plugin for Apache Superset",
   "main": "src/chart.ts",
   "scripts": {
     "test": "jest",
@@ -24,16 +24,16 @@
   "author": "Ivan Krsnik",
   "license": "Apache-2.0",
   "dependencies": {
-    "@superset-ui/chart-controls": "^0.17.30",
-    "@superset-ui/core": "^0.17.30",
+    "@superset-ui/chart-controls": "^0.17.36",
+    "@superset-ui/core": "^0.17.32",
     "@superset-ui/legacy-preset-chart-deckgl": "^0.4.6",
     "react": "^16.13.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.0.3"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-env": "^7.12.11",
     "babel-loader": "^8.2.2",
-    "clean-webpack-plugin": "*",
+    "clean-webpack-plugin": "^3.0.0",
     "http-server": "^0.12.3",
     "jest": "^26.6.3",
     "path": "^0.12.7",

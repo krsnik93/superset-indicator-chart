@@ -1,4 +1,4 @@
-# Status indicator chart plugin for Apache Superset
+# Indicator chart plugin for Apache Superset
 
 ## Features
 * markdown field for customizing layout

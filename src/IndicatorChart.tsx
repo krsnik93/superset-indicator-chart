@@ -16,7 +16,7 @@ const Chart = styled.div`
   justify-content: center;
 `;
 
-export default function StatusIndicatorChart(chartProps: ChartProps) {
+export default function IndicatorChart(chartProps: ChartProps) {
   const {
     markdowns,
     backgroundColors,

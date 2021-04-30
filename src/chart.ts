@@ -3,18 +3,18 @@ import controlPanel from './controlPanel';
 import transformProps from './transformProps';
 import buildQuery from './buildQuery';
 import thumbnail from './images/thumbnail.png';
-import Chart from './StatusIndicatorChart';
+import Chart from './IndicatorChart';
 import { FormData } from './types';
 
 const metadata = new ChartMetadata({
   description:
-    'A chart plugin for Superset demonstrating current best practices',
-  name: t('Status Indicator'),
+    'Indicator chart plugin for Apache Superset',
+  name: t('Indicator'),
   thumbnail,
   useLegacyApi: false,
 });
 
-export default class StatusIndicatorChartPlugin extends ChartPlugin<FormData> {
+export default class IndicatorChartPlugin extends ChartPlugin<FormData> {
   constructor() {
     super({
       buildQuery,
