@@ -14,11 +14,8 @@
   "keywords": [
     "superset",
     "superset-ui",
-    "hello",
-    "world",
+    "indicator",
     "chart",
-    "dynamic",
-    "async",
     "plugin"
   ],
   "author": "Ivan Krsnik",
@@ -55,5 +52,9 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krsnik93/superset-indicator-chart"
   }
 }
