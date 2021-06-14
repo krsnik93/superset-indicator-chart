@@ -1,6 +1,6 @@
 {
   "name": "superset-indicator-chart",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Indicator chart plugin for Apache Superset",
   "main": "src/chart.ts",
   "scripts": {
@@ -21,12 +21,11 @@
   "author": "Ivan Krsnik",
   "license": "Apache-2.0",
   "dependencies": {
-    "@superset-ui/chart-controls": "^0.17.36",
-    "@superset-ui/core": "^0.17.32",
-    "@superset-ui/legacy-preset-chart-deckgl": "^0.4.6",
+    "@superset-ui/chart-controls": "^0.17.10",
+    "@superset-ui/core": "^0.17.10",
+    "@superset-ui/legacy-preset-chart-deckgl": "^0.4.2",
     "process": "^0.11.10",
-    "react": "^16.13.1",
-    "typescript": "^4.0.3"
+    "react": "^16.13.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
@@ -38,6 +37,7 @@
     "prettier": "2.2.1",
     "thread-loader": "^3.0.3",
     "ts-loader": "^9.0.0",
+    "typescript": "^4.0.3",
     "url-loader": "^4.1.1",
     "vm": "^0.1.0",
     "webpack": "^5.34.0",
