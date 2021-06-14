@@ -1,20 +1,7 @@
 import React from 'react';
-import { styled, SafeMarkdown } from '@superset-ui/core';
+import { SafeMarkdown } from '@superset-ui/core';
 import { ChartProps } from './types';
 
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Chart = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
 
 export default function IndicatorChart(chartProps: ChartProps) {
   const {
@@ -28,16 +15,23 @@ export default function IndicatorChart(chartProps: ChartProps) {
   } = chartProps;
 
   return (
-    <Container
+    <div
       style={{
+        display: 'flex',
+        justifyContent: 'space-between',
         height: height,
         width: width,
         flexDirection: orientation === 'horizontal' ? 'row' : 'column',
       }}
     >
       {markdowns.map((markdown, index) => (
-        <Chart
+        <div
           style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
             backgroundColor: backgroundColors[index],
             borderRadius: roundedCorners ? '0.5em' : 0,
             color: textColor === 'light' ? 'gainsboro' : '#404040',
@@ -46,8 +40,8 @@ export default function IndicatorChart(chartProps: ChartProps) {
           }}
         >
           <SafeMarkdown source={markdown} />
-        </Chart>
+        </div>
       ))}
-    </Container>
+    </div>
   );
 }
