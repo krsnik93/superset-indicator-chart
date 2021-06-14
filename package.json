@@ -24,8 +24,12 @@
     "@superset-ui/chart-controls": "^0.17.10",
     "@superset-ui/core": "^0.17.10",
     "@superset-ui/legacy-preset-chart-deckgl": "^0.4.2",
+    "antd": "^4.16.2",
+    "babel-plugin-emotion": "^11.0.0",
     "process": "^0.11.10",
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "react-icons": "^4.2.0",
+    "react-loadable": "^5.5.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
