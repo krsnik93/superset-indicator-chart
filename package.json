@@ -21,13 +21,9 @@
   "author": "Ivan Krsnik",
   "license": "Apache-2.0",
   "dependencies": {
-    "@superset-ui/chart-controls": "^0.17.55",
-    "@superset-ui/core": "^0.17.55",
     "@superset-ui/legacy-preset-chart-deckgl": "^0.4.7",
     "antd": "^4.9.4",
     "process": "^0.11.10",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "react-icons": "^4.2.0",
     "react-loadable": "^5.5.0"
   },
@@ -47,7 +43,12 @@
     "webpack": "^5.37.1",
     "webpack-cli": "^4.6.0"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@superset-ui/chart-controls": "^0.17.55",
+    "@superset-ui/core": "^0.17.55",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
