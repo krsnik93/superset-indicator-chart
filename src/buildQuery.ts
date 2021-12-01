@@ -7,7 +7,7 @@ export default function buildQuery(formData: FormData) {
   return buildQueryContext(formData, baseQueryObject => [
     {
       ...baseQueryObject,
-      orderby: metrics.map(metric => [metric, order_desc]),
+      orderby: (metrics || []).map(metric => [metric, order_desc]),
     },
   ]);
 }
