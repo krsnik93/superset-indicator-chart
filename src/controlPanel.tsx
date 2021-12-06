@@ -2,6 +2,7 @@ import { t } from '@superset-ui/core';
 import {
   formatSelectOptions,
   D3_FORMAT_OPTIONS,
+  sections,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './constants';
 import { jsFunctionControl } from './utils';
@@ -9,6 +10,7 @@ import { jsFunctionControl } from './utils';
 
 export default {
   controlPanelSections: [
+    sections.legacyRegularTime,
     {
       label: t('Query'),
       expanded: true,
