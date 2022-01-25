@@ -3,7 +3,7 @@ import {
   DataRecord,
   getNumberFormatter,
 } from '@superset-ui/core';
-import sandboxedEval from '@superset-ui/legacy-preset-chart-deckgl/lib/utils/sandbox';
+import { sandboxedEval } from './utils';
 
 
 function insertMetricsIntoMarkdown(
@@ -31,11 +31,13 @@ function insertMetricsIntoMarkdown(
 }
 
 function getBackgroundColor(dataColorMapper: string, dataRecord: DataRecord) {
+  console.log('dataRecord', dataRecord);
   let backgroundColor;
   if (dataColorMapper) {
     console.log('Setting background color with the passed function.');
     const jsFnMutator = sandboxedEval(dataColorMapper);
     backgroundColor = jsFnMutator(dataRecord);
+    console.log('backgroundColor', backgroundColor);
   } else {
     console.log(
       'Setting default background color as no setter function was passed.',

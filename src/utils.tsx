@@ -1,7 +1,30 @@
 import React, { ReactNode } from 'react';
+import vm from 'vm';
 import { t } from '@superset-ui/core';
 import { SupersetAppState } from './types';
 
+
+const GLOBAL_CONTEXT = {
+  console,
+};
+
+export function sandboxedEval(code, context, opts) {
+  const sandbox = {};
+  const resultKey = `SAFE_EVAL_${Math.floor(Math.random() * 1000000)}`;
+  sandbox[resultKey] = {};
+  const codeToEval = `${resultKey}=${code}`;
+  const sandboxContext = { ...GLOBAL_CONTEXT, ...context };
+  Object.keys(sandboxContext).forEach(key => {
+    sandbox[key] = sandboxContext[key];
+  });
+  try {
+    vm.runInNewContext(codeToEval, sandbox, opts);
+
+    return sandbox[resultKey];
+  } catch (error) {
+    return () => error;
+  }
+}
 
 export function jsFunctionControl(
   label: ReactNode,
