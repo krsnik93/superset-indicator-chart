@@ -21,11 +21,11 @@
   "author": "Ivan Krsnik",
   "license": "Apache-2.0",
   "dependencies": {
-    "@superset-ui/legacy-preset-chart-deckgl": "^0.4.7",
     "antd": "^4.9.4",
     "process": "^0.11.10",
     "react-icons": "^4.2.0",
-    "react-loadable": "^5.5.0"
+    "react-loadable": "^5.5.0",
+    "vm-browserify": "^1.1.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
@@ -40,7 +40,6 @@
     "ts-loader": "^9.0.0",
     "typescript": "^4.0.3",
     "url-loader": "^4.1.1",
-    "vm": "^0.1.0",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.6.0"
   },
