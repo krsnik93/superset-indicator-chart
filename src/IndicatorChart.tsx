@@ -37,8 +37,8 @@ export default function IndicatorChart(chartProps: ChartProps) {
             backgroundColor: backgroundColors[index],
             borderRadius: roundedCorners ? '0.5em' : 0,
             color: textColor === 'light' ? 'gainsboro' : '#404040',
-            marginBottom: orientation === 'horizontal' ? 0 : 10,
-            marginRight: orientation === 'horizontal' ? 10 : 0,
+            marginBottom: 10,
+            marginRight: 10,
             padding: '1ex',
           }}
           className="item"
