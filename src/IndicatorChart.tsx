@@ -20,7 +20,6 @@ export default function IndicatorChart(chartProps: ChartProps) {
         display: 'flex',
         flexDirection: orientation === 'horizontal' ? 'row' : 'column',
         flexWrap: 'wrap',
-        alignContent: 'space-between',
         justifyContent: 'space-between',
         height: height,
         width: width,
