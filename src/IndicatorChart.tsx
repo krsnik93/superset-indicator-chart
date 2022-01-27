@@ -32,7 +32,8 @@ export default function IndicatorChart(chartProps: ChartProps) {
             flexDirection: 'column',
             flexWrap: 'wrap'
             alignItems: 'center',
-            justifyContent: 'center',
+            alignContent: 'space-between',
+            justifyContent: 'space-between',
             backgroundColor: backgroundColors[index],
             borderRadius: roundedCorners ? '0.5em' : 0,
             color: textColor === 'light' ? 'gainsboro' : '#404040',
