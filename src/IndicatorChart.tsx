@@ -18,11 +18,14 @@ export default function IndicatorChart(chartProps: ChartProps) {
     <div
       style={{
         display: 'flex',
+        flexDirection: orientation === 'horizontal' ? 'row' : 'column',
+        flexWrap: 'wrap',
+        alignContent: 'space-between',
         justifyContent: 'space-between',
         height: height,
         width: width,
-        flexDirection: orientation === 'horizontal' ? 'row' : 'column',
       }}
+      className="container"
     >
       {markdowns.map((markdown, index) => (
         <div
@@ -30,10 +33,8 @@ export default function IndicatorChart(chartProps: ChartProps) {
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
-            flexWrap: 'wrap'
             alignItems: 'center',
-            alignContent: 'space-between',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             backgroundColor: backgroundColors[index],
             borderRadius: roundedCorners ? '0.5em' : 0,
             color: textColor === 'light' ? 'gainsboro' : '#404040',
@@ -41,6 +42,7 @@ export default function IndicatorChart(chartProps: ChartProps) {
             marginRight: orientation === 'horizontal' ? 10 : 0,
             padding: '1ex',
           }}
+          className="item"
         >
           <SafeMarkdown source={markdown} />
         </div>
