@@ -30,6 +30,7 @@ export default function IndicatorChart(chartProps: ChartProps) {
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
+            flexWrap: 'wrap'
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: backgroundColors[index],
