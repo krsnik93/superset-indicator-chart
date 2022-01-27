@@ -39,6 +39,7 @@ export default function IndicatorChart(chartProps: ChartProps) {
             color: textColor === 'light' ? 'gainsboro' : '#404040',
             marginBottom: orientation === 'horizontal' ? 0 : 10,
             marginRight: orientation === 'horizontal' ? 10 : 0,
+            padding: '1ex',
           }}
         >
           <SafeMarkdown source={markdown} />
