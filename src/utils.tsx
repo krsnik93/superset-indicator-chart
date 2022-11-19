@@ -1,6 +1,10 @@
 import React, { ReactNode } from 'react';
 import vm from 'vm';
-import { t } from '@superset-ui/core';
+import {
+   t,
+   FeatureFlag,
+   isFeatureEnabled
+} from '@superset-ui/core';
 import { SupersetAppState } from './types';
 
 
@@ -48,12 +52,12 @@ export function jsFunctionControl(
     ),
     mapStateToProps: (state: SupersetAppState) => ({
       // eslint-disable-next-line no-negated-condition
-      warning: !state.common.conf.ENABLE_JAVASCRIPT_CONTROLS
+      warning: !isFeatureEnabled(FeatureFlag.ENABLE_JAVASCRIPT_CONTROLS)
         ? t(
             'This functionality is disabled in your environment for security reasons.',
           )
         : null,
-      readOnly: !state.common.conf.ENABLE_JAVASCRIPT_CONTROLS,
+      readOnly: !isFeatureEnabled(FeatureFlag.ENABLE_JAVASCRIPT_CONTROLS),
     }),
   };
 }
